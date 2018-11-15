@@ -29,17 +29,8 @@ CREATE TABLE `kupac` (
   `oib` varchar(45) DEFAULT NULL,
   `telefon` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_kup`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `kupac`
---
-
-LOCK TABLES `kupac` WRITE;
-/*!40000 ALTER TABLE `kupac` DISABLE KEYS */;
-/*!40000 ALTER TABLE `kupac` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `racun`
@@ -55,17 +46,8 @@ CREATE TABLE `racun` (
   `pdv` varchar(45) DEFAULT NULL,
   `ukupno` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_racun`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `racun`
---
-
-LOCK TABLES `racun` WRITE;
-/*!40000 ALTER TABLE `racun` DISABLE KEYS */;
-/*!40000 ALTER TABLE `racun` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `stavke`
@@ -75,22 +57,15 @@ DROP TABLE IF EXISTS `stavke`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stavke` (
-  `id_stavke` int(11) DEFAULT NULL,
+  `id_stavke` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `id_racun` int(11) DEFAULT NULL,
   `id_kupac` int(11) DEFAULT NULL,
-  `kolicina` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kolicina` int(11) DEFAULT NULL,
+  `cijena` double NOT NULL,
+  `iznos` double NOT NULL,
+  PRIMARY KEY (`id_stavke`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `stavke`
---
-
-LOCK TABLES `stavke` WRITE;
-/*!40000 ALTER TABLE `stavke` DISABLE KEYS */;
-INSERT INTO `stavke` VALUES (0,1,12,1),(1,1,12,2),(2,1,12,3),(0,1,12,4),(1,1,12,5),(2,1,12,6),(0,1,12,10),(1,1,12,11),(2,1,12,12);
-/*!40000 ALTER TABLE `stavke` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `usluga`
@@ -101,21 +76,13 @@ DROP TABLE IF EXISTS `usluga`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usluga` (
   `id_usl` int(11) NOT NULL AUTO_INCREMENT,
-  `naziv` varchar(45) DEFAULT NULL,
-  `cijena` double DEFAULT NULL,
-  PRIMARY KEY (`id_usl`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `naziv` varchar(45) NOT NULL,
+  `cijena` double NOT NULL,
+  PRIMARY KEY (`id_usl`),
+  UNIQUE KEY `id_usl_UNIQUE` (`id_usl`),
+  UNIQUE KEY `naziv_UNIQUE` (`naziv`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usluga`
---
-
-LOCK TABLES `usluga` WRITE;
-/*!40000 ALTER TABLE `usluga` DISABLE KEYS */;
-INSERT INTO `usluga` VALUES (1,'Pranje-vanjsko',110.5),(2,'Pranje-Unutarnje',150),(3,'Usisavanje',50.65);
-/*!40000 ALTER TABLE `usluga` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -126,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-14  2:38:08
+-- Dump completed on 2018-11-15  1:24:09
