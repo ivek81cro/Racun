@@ -11,12 +11,13 @@ using MySql.Data.MySqlClient;
 
 namespace Racun
 {
-    public partial class Usluge : Form
+    public partial class Kupci : Form
     {
-        public Usluge()
+        public Kupci()
         {
             InitializeComponent();
-            ucitajDatagridView();            
+            ucitajDatagridView();
+            Resetirajpolja();
         }
         private MySqlConnection connection;
         private bool OpenConnection()
@@ -26,7 +27,7 @@ namespace Racun
                 connection.Open();
                 return true;
             }
-            
+
             catch (MySqlException ex)
             {
                 //When handling errors, you can your application's response based on the error number.
@@ -62,26 +63,13 @@ namespace Racun
             }
         }
         private MySqlDataAdapter mySqlDataAdapter;
-        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            DataTable changes = ((DataTable)dataGridView1.DataSource).GetChanges();
-
-            if (changes != null)
-            {
-                MySqlCommandBuilder mcb = new MySqlCommandBuilder(mySqlDataAdapter);
-                mySqlDataAdapter.UpdateCommand = mcb.GetUpdateCommand();
-                mySqlDataAdapter.Update(changes);
-                ((DataTable)dataGridView1.DataSource).AcceptChanges();
-
-            }
-        }
         void ucitajDatagridView()
         {
             string connectionString = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
             connection = new MySqlConnection(connectionString);
             if (this.OpenConnection() == true)
             {
-                string upit = "SELECT id_usl AS 'Šifra', naziv AS 'Naziv', cijena AS 'Cijena' FROM racuni.usluga;";
+                string upit = "SELECT id_kup AS 'Šifra', naziv AS 'Naziv', adresa AS 'Adresa', oib AS 'OIB', telefon AS 'Telefon' FROM racuni.kupac;";
                 mySqlDataAdapter = new MySqlDataAdapter(upit, connection);
                 DataSet DS = new DataSet();
                 mySqlDataAdapter.Fill(DS);
@@ -91,12 +79,35 @@ namespace Racun
             }
             else { MessageBox.Show("Nije ostvaren spoj sa bazom."); }
         }
+        void Resetirajpolja()
+        {
+            ucitajDatagridView();
+            txtAdresa.Clear();
+            txtNaziv.Clear();
+            txtOib.Clear();
+            txtTelefon.Clear();
+            txtSifra.Text = "";
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow red = this.dataGridView1.Rows[e.RowIndex];
+
+                txtSifra.Text = red.Cells["Šifra"].Value.ToString();
+                txtNaziv.Text = red.Cells["Naziv"].Value.ToString();
+                txtAdresa.Text = red.Cells["Adresa"].Value.ToString();
+                txtOib.Text = red.Cells["OIB"].Value.ToString();
+                txtTelefon.Text = red.Cells["Telefon"].Value.ToString();
+            }
+        }
 
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            txtCijena.Text = txtCijena.Text.Replace(",", ".");
             string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "INSERT INTO racuni.usluga (naziv, cijena) VALUES('" + txtUsluga.Text + "'," + txtCijena.Text + ");";
+            string upit = "INSERT INTO racuni.kupac (naziv, adresa, oib, telefon) VALUES('" + txtNaziv.Text + 
+                "','" + txtAdresa.Text + "', '"+ txtOib.Text +"','"+ txtTelefon.Text +"');";
             MySqlConnection bazaspoj = new MySqlConnection(constring);
             MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
             MySqlDataReader citaj;
@@ -106,10 +117,10 @@ namespace Racun
                 citaj = bazazapovjed.ExecuteReader();
                 while (citaj.Read())
                 {
-                    
+
                 }
-                bazaspoj.Close();
                 ucitajDatagridView();
+                Resetirajpolja();
             }
             catch (Exception ex)
             {
@@ -120,7 +131,7 @@ namespace Racun
         private void btnBrisi_Click(object sender, EventArgs e)
         {
             string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "DELETE FROM racuni.usluga WHERE id_usl='"+txtSifra.Text+"';";
+            string upit = "DELETE FROM racuni.kupac WHERE id_kup='" + txtSifra.Text +"';";
             MySqlConnection bazaspoj = new MySqlConnection(constring);
             MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
             MySqlDataReader citaj;
@@ -132,11 +143,8 @@ namespace Racun
                 {
 
                 }
-                bazaspoj.Close();
                 ucitajDatagridView();
-                txtUsluga.Clear();
-                txtCijena.Clear();
-                txtSifra.Text = "";
+                Resetirajpolja();
             }
             catch (Exception ex)
             {
@@ -144,16 +152,30 @@ namespace Racun
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnPromjeni_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
+            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+            string upit = "UPDATE racuni.kupac SET naziv='" + txtNaziv.Text + "', adresa='" + txtAdresa.Text +
+                "', oib='" + txtOib.Text +"', telefon='" + txtTelefon.Text + "' WHERE id_kup='" + txtSifra.Text + "';";
+            MySqlConnection bazaspoj = new MySqlConnection(constring);
+            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+            MySqlDataReader citaj;
+            try
             {
-                DataGridViewRow red = this.dataGridView1.Rows[e.RowIndex];
+                bazaspoj.Open();
+                citaj = bazazapovjed.ExecuteReader();
+                while (citaj.Read())
+                {
 
-                txtSifra.Text = red.Cells["Šifra"].Value.ToString();
-                txtUsluga.Text = red.Cells["Naziv"].Value.ToString();
-                txtCijena.Text = red.Cells["Cijena"].Value.ToString();
+                }
+                ucitajDatagridView();
+                Resetirajpolja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
+    
 }

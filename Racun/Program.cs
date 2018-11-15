@@ -16,7 +16,7 @@ namespace Racun
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Racuni());
+            Application.Run(new Glavni());
         }
     }
 }
