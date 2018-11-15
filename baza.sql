@@ -29,7 +29,7 @@ CREATE TABLE `kupac` (
   `oib` varchar(45) DEFAULT NULL,
   `telefon` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_kup`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `racun` (
   `pdv` varchar(45) DEFAULT NULL,
   `ukupno` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_racun`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `stavke` (
   `cijena` double NOT NULL,
   `iznos` double NOT NULL,
   PRIMARY KEY (`id_stavke`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
