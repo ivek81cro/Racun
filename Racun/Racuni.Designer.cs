@@ -128,7 +128,6 @@
             this.cboxUsluge.Size = new System.Drawing.Size(411, 24);
             this.cboxUsluge.TabIndex = 8;
             this.cboxUsluge.SelectionChangeCommitted += new System.EventHandler(this.cboxUsluge_SelectionChangeCommitted);
-            this.cboxUsluge.Leave += new System.EventHandler(this.cboxUsluge_Leave);
             // 
             // label3
             // 

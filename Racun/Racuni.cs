@@ -18,6 +18,7 @@ namespace Racun
             InitializeComponent();
             popuniUslugeBox();
             popuniKupciBox();
+            //inicijalizacija naziva stupaca u dgv
             dataGridView1.ColumnCount = 5;
             dataGridView1.Columns[0].Name = "Redni br.";
             dataGridView1.Columns[1].Name = "Naziv";
@@ -25,7 +26,7 @@ namespace Racun
             dataGridView1.Columns[3].Name = "Cijena";
             dataGridView1.Columns[4].Name = "Iznos";
         }
-
+        //Popuna comboboxa usluga
         void popuniUslugeBox()
         {
             cboxUsluge.Items.Clear();
@@ -49,6 +50,7 @@ namespace Racun
                 MessageBox.Show(ex.Message);
             }
         }
+        //Popuna comboboxa kupaca
         void popuniKupciBox()
         {
             cboxKupci.Items.Clear();
@@ -81,7 +83,7 @@ namespace Racun
 
         private void btnZakljuci_Click(object sender, EventArgs e)
         {
-            int brRac=0;
+            int brRac=0;//spremanje zadnjeg id-a racuna (broj)
             string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
             string upit = "select id_racun from racuni.racun;";
             MySqlConnection bazaspoj = new MySqlConnection(constring);
@@ -93,7 +95,7 @@ namespace Racun
                 citaj = bazazapovjed.ExecuteReader();
                 while (citaj.Read())
                 {
-                    brRac= 1 + int.Parse(citaj.GetString("id_racun"));
+                    brRac= 1 + int.Parse(citaj.GetString("id_racun"));//iduci br=id +1
                 }
                 bazaspoj.Close();
             }
@@ -101,7 +103,7 @@ namespace Racun
             {
                 MessageBox.Show(ex.Message);
             }
-            //https://stackoverflow.com/questions/21018900/save-datagridview-to-mysql
+            //Unos stavaka sa dgv u bazu
             try
             {
                 string config = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
@@ -130,6 +132,7 @@ namespace Racun
                     
                 }
                 MessageBox.Show("Zaključeno");
+                //reset za novi racun
                 brojacStavke = 0;
                 con.Close();
                 dataGridView1.Rows.Clear();
@@ -139,7 +142,7 @@ namespace Racun
             {
                 MessageBox.Show("Error:" + er.ToString());
             }
-            //unos računa
+            //unos računa u bazu
             string upit2 = "INSERT INTO racuni.racun (broj, iznos, pdv, ukupno) VALUES ('"+brRac+"/1/1', '"+labIznosRn.Text+"'," +
                 " '"+labPdvRn.Text+"', '"+lblUkRn.Text+"');";
             MySqlCommand bazazapovjed2 = new MySqlCommand(upit2, bazaspoj);
@@ -162,7 +165,7 @@ namespace Racun
             pdv = 0;
             ukupno = 0;
         }
-
+        //Dodaj uslugu u tablicu datagridv.
         private void btnDodajUslugu_Click(object sender, EventArgs e)
         {
             double ukupnoT = double.Parse(lblCijenaUsl.Text) * int.Parse(txtKolicina.Text);
@@ -175,7 +178,7 @@ namespace Racun
             labPdvRn.Text = pdv.ToString() + " KN";
             lblUkRn.Text = ukupno.ToString() + " KN";
         }
-
+        //Selekcija kupca, postavljanje parametara za bazu
         private void cboxKupci_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
@@ -201,6 +204,7 @@ namespace Racun
                 MessageBox.Show(ex.Message);
             }
         }
+        //Odabir usluge i postavljanje parametara za bazu
         private void cboxUsluge_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
@@ -225,31 +229,7 @@ namespace Racun
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void cboxUsluge_Leave(object sender, EventArgs e)
-        {
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "SELECT * FROM racuni.usluga WHERE id_usl='" + lblIdUsl.Text + "';";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
-            {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                if (citaj.Read())
-                {
-                    lblNazivUsl.Text = citaj.GetString("naziv");
-                    lblIdUsl.Text = citaj.GetString("id_usl");
-                    lblCijenaUsl.Text = citaj.GetString("cijena");
-                }
-                bazaspoj.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
     }
     
 }

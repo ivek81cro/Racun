@@ -19,6 +19,7 @@ namespace Racun
             ucitajDatagridView();            
         }
         private MySqlConnection connection;
+
         private bool OpenConnection()
         {
             try
@@ -48,6 +49,7 @@ namespace Racun
                 return false;
             }
         }
+
         private bool CloseConnection()
         {
             try
@@ -61,7 +63,10 @@ namespace Racun
                 return false;
             }
         }
+
         private MySqlDataAdapter mySqlDataAdapter;
+
+        //kod za direktnu izmjenu podataka u dgv ali dgv zakljucan iz razloga lake greske
         private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
             DataTable changes = ((DataTable)dataGridView1.DataSource).GetChanges();
