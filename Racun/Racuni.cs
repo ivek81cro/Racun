@@ -19,12 +19,14 @@ namespace Racun
             popuniUslugeBox();
             popuniKupciBox();
             //inicijalizacija naziva stupaca u dgv
-            dataGridView1.ColumnCount = 5;
+            dataGridView1.ColumnCount = 6;
             dataGridView1.Columns[0].Name = "Redni br.";
             dataGridView1.Columns[1].Name = "Naziv";
             dataGridView1.Columns[2].Name = "Količina";
             dataGridView1.Columns[3].Name = "Cijena";
             dataGridView1.Columns[4].Name = "Iznos";
+            dataGridView1.Columns[5].Name = "Šifra usluge";
+
         }
         //Popuna comboboxa usluga
         void popuniUslugeBox()
@@ -108,8 +110,8 @@ namespace Racun
             {
                 string config = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
                 MySqlConnection con = new MySqlConnection(config);
-                string query = "INSERT INTO racuni.stavke(id_racun, id_kupac, kolicina, cijena, iznos)" +
-                    "VALUES (@id_racun, @id_kupac, @kolicina, @cijena, @iznos);";
+                string query = "INSERT INTO racuni.stavke(id_racun, id_kupac, id_usluge, kolicina, cijena, iznos)" +
+                    "VALUES (@id_racun, @id_kupac, @id_usluge, @kolicina, @cijena, @iznos);";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 con.Open();
@@ -127,6 +129,8 @@ namespace Racun
                         "@cijena", double.Parse(dataGridView1.Rows[row].Cells[3].Value.ToString()));
                     cmd.Parameters.AddWithValue(
                         "@iznos", double.Parse(dataGridView1.Rows[row].Cells[4].Value.ToString()));
+                    cmd.Parameters.AddWithValue(
+                        "@id_usluge", double.Parse(dataGridView1.Rows[row].Cells[5].Value.ToString()));
 
                     cmd.ExecuteNonQuery();
                     
@@ -165,12 +169,12 @@ namespace Racun
             pdv = 0;
             ukupno = 0;
         }
-        //Dodaj uslugu u tablicu datagridv.
+        //Dodaj uslugu u tablicu datagridv. i zbrajaj iznose
         private void btnDodajUslugu_Click(object sender, EventArgs e)
         {
             double ukupnoT = double.Parse(lblCijenaUsl.Text) * int.Parse(txtKolicina.Text);
             brojacStavke++;
-            dataGridView1.Rows.Add(brojacStavke,cboxUsluge.Text,txtKolicina.Text,lblCijenaUsl.Text,ukupnoT);
+            dataGridView1.Rows.Add(brojacStavke,cboxUsluge.Text,txtKolicina.Text,lblCijenaUsl.Text,ukupnoT,lblIdUsl.Text);
             iznos = Math.Round(iznos + ukupnoT,2);
             pdv = Math.Round(iznos * 0.25,2);
             ukupno = Math.Round(iznos + pdv,2);
