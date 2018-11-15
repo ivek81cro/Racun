@@ -105,75 +105,96 @@ namespace Racun
 
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "INSERT INTO racuni.kupac (naziv, adresa, oib, telefon) VALUES('" + txtNaziv.Text + 
-                "','" + txtAdresa.Text + "', '"+ txtOib.Text +"','"+ txtTelefon.Text +"');";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
+            if (txtAdresa.Text != "" && txtNaziv.Text != "" && txtOib.Text != "" && txtTelefon.Text !="")
             {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                while (citaj.Read())
+                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                string upit = "INSERT INTO racuni.kupac (naziv, adresa, oib, telefon) VALUES('" + txtNaziv.Text +
+                    "','" + txtAdresa.Text + "', '" + txtOib.Text + "','" + txtTelefon.Text + "');";
+                MySqlConnection bazaspoj = new MySqlConnection(constring);
+                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+                MySqlDataReader citaj;
+                try
                 {
+                    bazaspoj.Open();
+                    citaj = bazazapovjed.ExecuteReader();
+                    while (citaj.Read())
+                    {
 
+                    }
+                    ucitajDatagridView();
+                    Resetirajpolja();
                 }
-                ucitajDatagridView();
-                Resetirajpolja();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Unesi podatke");
             }
         }
 
         private void btnBrisi_Click(object sender, EventArgs e)
         {
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "DELETE FROM racuni.kupac WHERE id_kup='" + txtSifra.Text +"';";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
+            if (txtSifra.Text != "" && txtOib.Text!="")
             {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                while (citaj.Read())
+                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                string upit = "DELETE FROM racuni.kupac WHERE id_kup='" + txtSifra.Text + "';";
+                MySqlConnection bazaspoj = new MySqlConnection(constring);
+                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+                MySqlDataReader citaj;
+                try
                 {
+                    bazaspoj.Open();
+                    citaj = bazazapovjed.ExecuteReader();
+                    while (citaj.Read())
+                    {
 
+                    }
+                    ucitajDatagridView();
+                    Resetirajpolja();
                 }
-                ucitajDatagridView();
-                Resetirajpolja();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Odaberi kupca za brisanje");
             }
         }
 
         private void btnPromjeni_Click(object sender, EventArgs e)
         {
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "UPDATE racuni.kupac SET naziv='" + txtNaziv.Text + "', adresa='" + txtAdresa.Text +
-                "', oib='" + txtOib.Text +"', telefon='" + txtTelefon.Text + "' WHERE id_kup='" + txtSifra.Text + "';";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
+            if (txtSifra.Text != "" && txtOib.Text != "")
             {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                while (citaj.Read())
+                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                string upit = "UPDATE racuni.kupac SET naziv='" + txtNaziv.Text + "', adresa='" + txtAdresa.Text +
+                    "', oib='" + txtOib.Text + "', telefon='" + txtTelefon.Text + "' WHERE id_kup='" + txtSifra.Text + "';";
+                MySqlConnection bazaspoj = new MySqlConnection(constring);
+                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+                MySqlDataReader citaj;
+                try
                 {
+                    bazaspoj.Open();
+                    citaj = bazazapovjed.ExecuteReader();
+                    while (citaj.Read())
+                    {
 
+                    }
+                    ucitajDatagridView();
+                    Resetirajpolja();
                 }
-                ucitajDatagridView();
-                Resetirajpolja();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Odaberi kupca za Promjenu");
             }
         }
     }

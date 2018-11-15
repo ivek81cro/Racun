@@ -99,53 +99,67 @@ namespace Racun
 
         private void btnSpremi_Click(object sender, EventArgs e)
         {
-            txtCijena.Text = txtCijena.Text.Replace(",", ".");
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "INSERT INTO racuni.usluga (naziv, cijena) VALUES('" + txtUsluga.Text + "'," + txtCijena.Text + ");";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
+            if (txtUsluga.Text != "" && txtCijena.Text != "")
             {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                while (citaj.Read())
+                txtCijena.Text = txtCijena.Text.Replace(",", ".");
+                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                string upit = "INSERT INTO racuni.usluga (naziv, cijena) VALUES('" + txtUsluga.Text + "'," + txtCijena.Text + ");";
+                MySqlConnection bazaspoj = new MySqlConnection(constring);
+                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+                MySqlDataReader citaj;
+                try
                 {
-                    
+                    bazaspoj.Open();
+                    citaj = bazazapovjed.ExecuteReader();
+                    while (citaj.Read())
+                    {
+
+                    }
+                    bazaspoj.Close();
+                    ucitajDatagridView();
                 }
-                bazaspoj.Close();
-                ucitajDatagridView();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Unesite podatke.");
             }
         }
 
         private void btnBrisi_Click(object sender, EventArgs e)
         {
-            string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-            string upit = "DELETE FROM racuni.usluga WHERE id_usl='"+txtSifra.Text+"';";
-            MySqlConnection bazaspoj = new MySqlConnection(constring);
-            MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-            MySqlDataReader citaj;
-            try
+            if (txtUsluga.Text != "" && txtCijena.Text != "")
             {
-                bazaspoj.Open();
-                citaj = bazazapovjed.ExecuteReader();
-                while (citaj.Read())
+                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                string upit = "DELETE FROM racuni.usluga WHERE id_usl='" + txtSifra.Text + "';";
+                MySqlConnection bazaspoj = new MySqlConnection(constring);
+                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
+                MySqlDataReader citaj;
+                try
                 {
+                    bazaspoj.Open();
+                    citaj = bazazapovjed.ExecuteReader();
+                    while (citaj.Read())
+                    {
 
+                    }
+                    bazaspoj.Close();
+                    ucitajDatagridView();
+                    txtUsluga.Clear();
+                    txtCijena.Clear();
+                    txtSifra.Text = "";
                 }
-                bazaspoj.Close();
-                ucitajDatagridView();
-                txtUsluga.Clear();
-                txtCijena.Clear();
-                txtSifra.Text = "";
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Odaberi uslugu za brisanje");
             }
         }
 

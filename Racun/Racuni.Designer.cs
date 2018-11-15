@@ -98,7 +98,7 @@
             // labAdresa
             // 
             this.labAdresa.AutoSize = true;
-            this.labAdresa.Location = new System.Drawing.Point(301, 58);
+            this.labAdresa.Location = new System.Drawing.Point(301, 55);
             this.labAdresa.Name = "labAdresa";
             this.labAdresa.Size = new System.Drawing.Size(0, 17);
             this.labAdresa.TabIndex = 5;
@@ -288,11 +288,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(238, 58);
+            this.label6.Location = new System.Drawing.Point(238, 55);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 17);
             this.label6.TabIndex = 26;
             this.label6.Text = "Adresa:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -347,6 +348,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Racuni";
             this.Text = "Racuni";
+            this.Load += new System.EventHandler(this.Racuni_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
