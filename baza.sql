@@ -29,7 +29,7 @@ CREATE TABLE `kupac` (
   `oib` varchar(45) DEFAULT NULL,
   `telefon` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_kup`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `racun` (
   `pdv` varchar(45) DEFAULT NULL,
   `ukupno` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_racun`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,11 +60,12 @@ CREATE TABLE `stavke` (
   `id_stavke` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `id_racun` int(11) DEFAULT NULL,
   `id_kupac` int(11) DEFAULT NULL,
+  `id_usluge` int(11) DEFAULT NULL,
   `kolicina` int(11) DEFAULT NULL,
   `cijena` double NOT NULL,
   `iznos` double NOT NULL,
   PRIMARY KEY (`id_stavke`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,4 +94,4 @@ CREATE TABLE `usluga` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-15  1:24:09
+-- Dump completed on 2018-11-15  2:03:54
