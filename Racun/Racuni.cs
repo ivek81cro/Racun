@@ -93,9 +93,10 @@ namespace Racun
                 citaj = bazazapovjed.ExecuteReader();
                 while (citaj.Read())
                 {
-                    brRac = 1 + int.Parse(citaj.GetString("id_racun"));//iduci br=id +1
+                    brRac = 1 + int.Parse(citaj.GetString("id_racun"));//iduci br=id +1                 
                 }
                 bazaspoj.Close();
+                if (brRac == 0) { brRac++; }
             }
             catch (Exception ex)
             {
