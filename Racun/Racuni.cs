@@ -27,7 +27,7 @@ namespace Racun
             dataGridView1.Columns[3].Name = "Cijena";
             dataGridView1.Columns[4].Name = "Iznos";
             dataGridView1.Columns[5].Name = "Šifra usluge";
-
+            lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
         //Popuna comboboxa usluga
         void popuniUslugeBox()
@@ -119,8 +119,8 @@ namespace Racun
                 {
                     string config = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
                     MySqlConnection con = new MySqlConnection(config);
-                    string query = "INSERT INTO racuni.stavke(id_racun, id_kupac, id_usluge, kolicina, cijena, iznos)" +
-                        "VALUES (@id_racun, @id_kupac, @id_usluge, @kolicina, @cijena, @iznos);";
+                    string query = "INSERT INTO racuni.stavke(id_racun, id_usluge, kolicina, cijena, iznos)" +
+                        "VALUES (@id_racun, @id_usluge, @kolicina, @cijena, @iznos);";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     con.Open();
@@ -130,8 +130,6 @@ namespace Racun
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue(
                             "@id_racun", brRac);
-                        cmd.Parameters.AddWithValue(
-                            "@id_kupac", int.Parse(txtSifraKupca.Text.ToString()));
                         cmd.Parameters.AddWithValue(
                             "@kolicina", int.Parse(dataGridView1.Rows[row].Cells[2].Value.ToString()));
                         cmd.Parameters.AddWithValue(
@@ -161,9 +159,10 @@ namespace Racun
 
 
                 //unos računa u bazu
+                lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-                string upit = "INSERT INTO racuni.racun (broj, iznos, pdv, ukupno) VALUES ('" + brRac + "/1/1', '" + labIznosRn.Text + "'," +
-                    " '" + labPdvRn.Text + "', '" + lblUkRn.Text + "');";
+                string upit = "INSERT INTO racuni.racun (broj, iznos, pdv, ukupno, datum, id_kupac) VALUES ('" + brRac + "/1/1', '" + labIznosRn.Text + "'," +
+                    " '" + labPdvRn.Text + "', '" + lblUkRn.Text + "', '" + lblDatum.Text + "', '" + txtSifraKupca.Text + "');";
                 MySqlConnection bazaspoj = new MySqlConnection(constring);
                 MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
                 MySqlDataReader citaj;
@@ -192,6 +191,7 @@ namespace Racun
                 labAdresa.Text = "";
                 labOib.Text = "";
                 labTelefon.Text = "";
+                lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
             else
             {
