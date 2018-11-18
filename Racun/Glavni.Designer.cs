@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Glavni));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.uslugeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kupciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             // 
             this.racuniToolStripMenuItem.Name = "racuniToolStripMenuItem";
             this.racuniToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
-            this.racuniToolStripMenuItem.Text = "Racuni";
+            this.racuniToolStripMenuItem.Text = "Računi";
             this.racuniToolStripMenuItem.Click += new System.EventHandler(this.racuniToolStripMenuItem_Click);
             // 
             // Glavni
@@ -76,6 +77,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 805);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "Glavni";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
