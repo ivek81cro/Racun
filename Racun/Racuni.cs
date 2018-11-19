@@ -271,6 +271,12 @@ namespace Racun
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnIspis_Click(object sender, EventArgs e)
+        {
+            Racun_ispis ispis = new Racun_ispis();
+            ispis.Show();
+        }
     }
     
 }
