@@ -184,7 +184,7 @@ namespace Racun
                 iznos = 0;
                 pdv = 0;
                 ukupno = 0;
-                ucitajBrojracuna();
+                txtBrRacuna.Text = (brRac +=1).ToString() + "/1/1";
                 lblUkRn.Text = "";
                 labIznosRn.Text = "";
                 labPdvRn.Text = "";
