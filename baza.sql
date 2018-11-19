@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: localhost    Database: racuni
 -- ------------------------------------------------------
--- Server version	5.6.41-log
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `kupac`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `kupac` (
   `id_kup` int(11) NOT NULL AUTO_INCREMENT,
   `naziv` varchar(45) DEFAULT NULL,
@@ -38,15 +38,17 @@ CREATE TABLE `kupac` (
 
 DROP TABLE IF EXISTS `racun`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `racun` (
   `id_racun` int(11) NOT NULL AUTO_INCREMENT,
   `broj` varchar(45) DEFAULT NULL,
   `iznos` varchar(45) DEFAULT NULL,
   `pdv` varchar(45) DEFAULT NULL,
   `ukupno` varchar(45) DEFAULT NULL,
+  `datum` datetime NOT NULL,
+  `id_kupac` int(11) NOT NULL,
   PRIMARY KEY (`id_racun`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,11 +57,10 @@ CREATE TABLE `racun` (
 
 DROP TABLE IF EXISTS `stavke`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `stavke` (
   `id_stavke` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `id_racun` int(11) DEFAULT NULL,
-  `id_kupac` int(11) DEFAULT NULL,
   `id_usluge` int(11) DEFAULT NULL,
   `kolicina` int(11) DEFAULT NULL,
   `cijena` double NOT NULL,
@@ -74,7 +75,7 @@ CREATE TABLE `stavke` (
 
 DROP TABLE IF EXISTS `usluga`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `usluga` (
   `id_usl` int(11) NOT NULL AUTO_INCREMENT,
   `naziv` varchar(45) NOT NULL,
@@ -94,4 +95,4 @@ CREATE TABLE `usluga` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-15 23:00:06
+-- Dump completed on 2018-11-19 23:30:22

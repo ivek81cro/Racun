@@ -64,11 +64,11 @@
             // txtBrRacuna
             // 
             this.txtBrRacuna.Location = new System.Drawing.Point(67, 45);
-            this.txtBrRacuna.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBrRacuna.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrRacuna.Name = "txtBrRacuna";
             this.txtBrRacuna.ReadOnly = true;
             this.txtBrRacuna.Size = new System.Drawing.Size(67, 20);
-            this.txtBrRacuna.TabIndex = 0;
+            this.txtBrRacuna.TabIndex = 6;
             // 
             // label1
             // 
@@ -84,10 +84,10 @@
             // 
             this.cboxKupci.FormattingEnabled = true;
             this.cboxKupci.Location = new System.Drawing.Point(67, 78);
-            this.cboxKupci.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboxKupci.Margin = new System.Windows.Forms.Padding(2);
             this.cboxKupci.Name = "cboxKupci";
             this.cboxKupci.Size = new System.Drawing.Size(92, 21);
-            this.cboxKupci.TabIndex = 2;
+            this.cboxKupci.TabIndex = 0;
             this.cboxKupci.SelectionChangeCommitted += new System.EventHandler(this.cboxKupci_SelectionChangeCommitted);
             // 
             // label2
@@ -131,10 +131,10 @@
             // 
             this.cboxUsluge.FormattingEnabled = true;
             this.cboxUsluge.Location = new System.Drawing.Point(67, 112);
-            this.cboxUsluge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboxUsluge.Margin = new System.Windows.Forms.Padding(2);
             this.cboxUsluge.Name = "cboxUsluge";
             this.cboxUsluge.Size = new System.Drawing.Size(309, 21);
-            this.cboxUsluge.TabIndex = 8;
+            this.cboxUsluge.TabIndex = 1;
             this.cboxUsluge.SelectionChangeCommitted += new System.EventHandler(this.cboxUsluge_SelectionChangeCommitted);
             // 
             // label3
@@ -150,10 +150,10 @@
             // btnDodajUslugu
             // 
             this.btnDodajUslugu.Location = new System.Drawing.Point(505, 107);
-            this.btnDodajUslugu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDodajUslugu.Margin = new System.Windows.Forms.Padding(2);
             this.btnDodajUslugu.Name = "btnDodajUslugu";
             this.btnDodajUslugu.Size = new System.Drawing.Size(56, 28);
-            this.btnDodajUslugu.TabIndex = 10;
+            this.btnDodajUslugu.TabIndex = 3;
             this.btnDodajUslugu.Text = "Dodaj";
             this.btnDodajUslugu.UseVisualStyleBackColor = true;
             this.btnDodajUslugu.Click += new System.EventHandler(this.btnDodajUslugu_Click);
@@ -166,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 193);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(581, 163);
@@ -178,10 +178,10 @@
             this.btnZakljuci.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnZakljuci.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZakljuci.Location = new System.Drawing.Point(465, 162);
-            this.btnZakljuci.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnZakljuci.Margin = new System.Windows.Forms.Padding(2);
             this.btnZakljuci.Name = "btnZakljuci";
             this.btnZakljuci.Size = new System.Drawing.Size(125, 28);
-            this.btnZakljuci.TabIndex = 12;
+            this.btnZakljuci.TabIndex = 4;
             this.btnZakljuci.Text = "Zaključi";
             this.btnZakljuci.UseVisualStyleBackColor = false;
             this.btnZakljuci.Click += new System.EventHandler(this.btnZakljuci_Click);
@@ -189,10 +189,10 @@
             // txtKolicina
             // 
             this.txtKolicina.Location = new System.Drawing.Point(433, 113);
-            this.txtKolicina.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtKolicina.Margin = new System.Windows.Forms.Padding(2);
             this.txtKolicina.Name = "txtKolicina";
             this.txtKolicina.Size = new System.Drawing.Size(53, 20);
-            this.txtKolicina.TabIndex = 14;
+            this.txtKolicina.TabIndex = 2;
             // 
             // label4
             // 
@@ -359,7 +359,7 @@
             this.btnIspis.Location = new System.Drawing.Point(14, 161);
             this.btnIspis.Name = "btnIspis";
             this.btnIspis.Size = new System.Drawing.Size(72, 23);
-            this.btnIspis.TabIndex = 31;
+            this.btnIspis.TabIndex = 5;
             this.btnIspis.Text = "Ispis";
             this.btnIspis.UseVisualStyleBackColor = true;
             this.btnIspis.Click += new System.EventHandler(this.btnIspis_Click);
@@ -399,7 +399,7 @@
             this.Controls.Add(this.cboxKupci);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBrRacuna);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Racuni";
             this.Text = "Racuni";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
