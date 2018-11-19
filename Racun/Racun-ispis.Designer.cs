@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.Racun_ispisR2 = new Racun.Racun_ispisR();
-            this.Racun_ispisR1 = new Racun.Racun_ispisR();
             this.Test1 = new Racun.Test();
             this.SuspendLayout();
             // 
@@ -43,8 +41,15 @@
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReportSource = this.Test1;
+            this.crystalReportViewer1.ShowCloseButton = false;
+            this.crystalReportViewer1.ShowCopyButton = false;
+            this.crystalReportViewer1.ShowGroupTreeButton = false;
+            this.crystalReportViewer1.ShowLogo = false;
+            this.crystalReportViewer1.ShowParameterPanelButton = false;
+            this.crystalReportViewer1.ShowTextSearchButton = false;
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // Racun_ispis
             // 
@@ -54,6 +59,7 @@
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "Racun_ispis";
             this.Text = "Racun_ispis";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
@@ -61,8 +67,6 @@
         #endregion
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private Racun_ispisR Racun_ispisR1;
-        private Racun_ispisR Racun_ispisR2;
         private Test Test1;
     }
 }

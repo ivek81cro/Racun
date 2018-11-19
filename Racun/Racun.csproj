@@ -103,12 +103,6 @@
     <Compile Include="Racun-ispis.Designer.cs">
       <DependentUpon>Racun-ispis.cs</DependentUpon>
     </Compile>
-    <Compile Include="Racun-ispisR.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Racun-ispisR.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Racuni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,10 +132,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Racun-ispis.resx">
       <DependentUpon>Racun-ispis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Racun-ispisR.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Racun-ispisR.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Racuni.resx">
       <DependentUpon>Racuni.cs</DependentUpon>

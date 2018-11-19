@@ -192,11 +192,15 @@ namespace Racun
                 labOib.Text = "";
                 labTelefon.Text = "";
                 lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                //Racun_ispis ispis = new Racun_ispis();
+                //ispis.Show();
             }
             else
             {
                 MessageBox.Show("Odaberi kupca.");
             }
+            Racun_ispis ispis = new Racun_ispis();
+            ispis.Show();
         }
         //Dodaj uslugu u tablicu datagridv. i zbrajaj iznose
         private void btnDodajUslugu_Click(object sender, EventArgs e)
@@ -209,9 +213,9 @@ namespace Racun
                 iznos = Math.Round(iznos + ukupnoT, 2);
                 pdv = Math.Round(iznos * 0.25, 2);
                 ukupno = Math.Round(iznos + pdv, 2);
-                labIznosRn.Text = iznos.ToString() + " KN";
-                labPdvRn.Text = pdv.ToString() + " KN";
-                lblUkRn.Text = ukupno.ToString() + " KN";
+                labIznosRn.Text = iznos.ToString();
+                labPdvRn.Text = pdv.ToString();
+                lblUkRn.Text = ukupno.ToString();
             }
             else
             {
@@ -268,16 +272,6 @@ namespace Racun
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Racuni_Load(object sender, EventArgs e)
-        {
-
         }
     }
     
