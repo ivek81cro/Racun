@@ -192,15 +192,13 @@ namespace Racun
                 labOib.Text = "";
                 labTelefon.Text = "";
                 lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                //Racun_ispis ispis = new Racun_ispis();
-                //ispis.Show();
+                Racun_ispis ispis = new Racun_ispis();
+                ispis.Show();
             }
             else
             {
                 MessageBox.Show("Odaberi kupca.");
-            }
-            Racun_ispis ispis = new Racun_ispis();
-            ispis.Show();
+            }            
         }
         //Dodaj uslugu u tablicu datagridv. i zbrajaj iznose
         private void btnDodajUslugu_Click(object sender, EventArgs e)
