@@ -191,11 +191,11 @@ namespace Racun
                     MessageBox.Show(ex.Message);
                 }
                 MessageBox.Show("Zaključeno");
-
+                //reset ostatka forme za novi racun
                 iznos = 0;
                 pdv = 0;
                 ukupno = 0;
-                txtBrRacuna.Text = (brRac +=1).ToString() + "/1/1";
+                txtBrRacuna.Text = (brRac +=1).ToString() + "/1/1";//uvecaj broj rn za 1 kod uspjesnog unosa
                 lblUkRn.Text = "";
                 labIznosRn.Text = "";
                 labPdvRn.Text = "";
