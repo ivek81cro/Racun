@@ -142,7 +142,6 @@ namespace Racun
                         cmd.ExecuteNonQuery();
 
                     }
-                    MessageBox.Show("Zaključeno");
                     //reset za novi racun
                     brojacStavke = 0;
                     con.Close();
@@ -160,26 +159,38 @@ namespace Racun
 
                 //unos računa u bazu
                 lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
-                string upit = "INSERT INTO racuni.racun (broj, iznos, pdv, ukupno, datum, id_kupac) VALUES ('" + brRac + "/1/1', '" + labIznosRn.Text + "'," +
-                    " '" + labPdvRn.Text + "', '" + lblUkRn.Text + "', '" + lblDatum.Text + "', '" + txtSifraKupca.Text + "');";
-                MySqlConnection bazaspoj = new MySqlConnection(constring);
-                MySqlCommand bazazapovjed = new MySqlCommand(upit, bazaspoj);
-                MySqlDataReader citaj;
+                double iznosRacuna = double.Parse(labIznosRn.Text);
+                double pdvRacuna = double.Parse(labPdvRn.Text);
+                double ukupanIznos = double.Parse(lblUkRn.Text);
                 try
                 {
+                    string constring = "datasource=localhost;port=3306;username=racuni;password=pass123;charset=utf8;";
+                    string upit = "INSERT INTO racuni.racun (broj, iznos, pdv, ukupno, datum, id_kupac) " +
+                        "VALUES (@broj, @iznos, @pdv, @ukupno, @datum, @id_kupac);";
+                    MySqlConnection bazaspoj = new MySqlConnection(constring);
+                    MySqlCommand cmd2 = new MySqlCommand(upit, bazaspoj);
                     bazaspoj.Open();
-                    citaj = bazazapovjed.ExecuteReader();
-                    while (citaj.Read())
-                    {
 
-                    }
-                    bazaspoj.Close();
+                    cmd2.Parameters.Clear();
+                    cmd2.Parameters.AddWithValue(
+                        "@broj", brRac.ToString() + "/1/1");
+                    cmd2.Parameters.AddWithValue(
+                        "@iznos", iznosRacuna);
+                    cmd2.Parameters.AddWithValue(
+                        "@pdv", pdvRacuna);
+                    cmd2.Parameters.AddWithValue(
+                        "@ukupno", ukupanIznos);
+                    cmd2.Parameters.AddWithValue(
+                        "@datum", lblDatum.Text);
+                    cmd2.Parameters.AddWithValue(
+                        "@id_kupac", txtSifraKupca.Text);
+                    cmd2.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                MessageBox.Show("Zaključeno");
 
                 iznos = 0;
                 pdv = 0;
@@ -193,7 +204,7 @@ namespace Racun
                 labTelefon.Text = "";
                 lblDatum.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 Racun_ispis ispis = new Racun_ispis();
-                ispis.Show();
+                ispis.Show();                
             }
             else
             {
