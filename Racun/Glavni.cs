@@ -31,11 +31,9 @@ namespace Racun
                 usluge.WindowState = FormWindowState.Maximized;
             }
             else
-            {
-                usluge.Close();
-                usluge = new Usluge();
-                usluge.FormClosed += grad_FormClosed;
+            {                
                 usluge.Show();
+                usluge.WindowState = FormWindowState.Maximized;
             }
         }
         void grad_FormClosed(object sender, FormClosedEventArgs e)
@@ -56,10 +54,8 @@ namespace Racun
             }
             else
             {
-                kupci.Close();
-                kupci = new Kupci();
-                kupci.FormClosed += kup_FormClosed;
                 kupci.Show();
+                kupci.WindowState = FormWindowState.Maximized;
             }
         }
         void kup_FormClosed(object sender, FormClosedEventArgs e)
@@ -80,10 +76,8 @@ namespace Racun
             }
             else
             {
-                racuni.Close();
-                racuni = new Racuni();
-                racuni.FormClosed += rac_FormClosed;
                 racuni.Show();
+                racuni.WindowState = FormWindowState.Maximized;
             }
         }
         void rac_FormClosed(object sender, FormClosedEventArgs e)
